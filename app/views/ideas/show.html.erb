@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<% if @idea.picture.present? %>
+<p>
+  <b>Picture:</b><br/>
+  <%= image_tag(@idea.picture_url, :width => 100) %>
+</p>
+<% end %>
+<p>
+  <b>Name:</b>
+  <%= @idea.name %>
+</p>
+
+<p>
+  <b>Descripcion:</b>
+  <%= @idea.descripcion %>
+</p>
+
+<% if @idea.video.present? %>
+  <p>
+    <b>Video:</b><br/>
+    <iframe width="560" height="315" src="http://www.youtube.com/embed/<%= @idea.video %>" frameborder="0" allowfullscreen></iframe>
+  <p/>
+<% end %>
+<hr>
+<h3>Comentarios</h3>
+  <% if @idea.comments.count > 0 %>
+    <% @idea.comments.each do |comment| %>
+      <div>
+        <strong><%= comment.user_name %></strong>
+        <br />
+        <p><%= comment.body %><p>
+      </div>
+    <% end %>
+  <% else %>
+    <div>
+      <i>Sin Comentarios</i>
+    </div>
+  <% end %>
+<hr>
+<%= render 'comments/form' %>
+
+<%= link_to 'Edit', edit_idea_path(@idea) %> |
+<%= link_to 'Back', ideas_path %>

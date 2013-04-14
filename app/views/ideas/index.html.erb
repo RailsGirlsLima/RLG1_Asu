@@ -1,0 +1,57 @@
+<h1>Blog de Ideas</h1>
+<%= link_to 'Nueva Idea', new_idea_path %>
+<% @ideas.each do |idea| %>
+  <hr>
+  <div>
+    <table>
+      <tr>
+        <td>
+          <div>
+            <% if idea.picture.present? %>      
+              <%= image_tag(idea.picture_url, :width => 60) %>      
+            <% end %>
+          </div>
+        </td>
+        <td>          
+          <h2><%= idea.name %></h2>  
+        </td>
+      </tr>
+    </table>
+    <p>
+      <%= idea.descripcion %>
+    </p>    
+      
+    <div>
+      <% if idea.video.present? %>        
+          <iframe width="560" height="315" src="http://www.youtube.com/embed/<%= idea.video %>" frameborder="0" allowfullscreen></iframe>        
+      <% end %>
+    </div>
+    <%= "Comentarios: "+idea.comments.count.to_s %> | <%= link_to 'Mostrar', idea %> | <%= link_to 'Editar', edit_idea_path(idea) %> | <%= link_to 'Eliminar', idea, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+  
+
+<% end %>
+<!-- <table>
+  <tr>
+    <th>Name</th>
+    <th>Descripcion</th>    
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @ideas.each do |idea| %>
+  <tr>
+    <td><%= idea.name %></td>
+    <td><%= truncate idea.descripcion, length: 150, separator: " " %></td>    
+    <td><%= link_to 'Show', idea %></td>
+    <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
+    <td><%= link_to 'Destroy', idea, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+
+-->
