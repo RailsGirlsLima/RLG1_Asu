@@ -3,10 +3,9 @@ class CreateComments < ActiveRecord::Migration
     create_table :comments do |t|
       t.string :user_name
       t.text :body
-      t.integer :idea_id
+      t.belongs_to :idea
 
       t.timestamps
-      add_foreign_key :comments, :ideas
     end
   end
 end
